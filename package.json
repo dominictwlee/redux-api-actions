@@ -4,16 +4,37 @@
   "description": "Redux middleware for dispatching api actions",
   "main": "index.js",
   "scripts": {
+    "commit": "npx git-cz",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dominictwlee/redux-api-actions.git"
   },
+  "keywords": [
+    "redux",
+    "middleware",
+    "flux",
+    "api",
+    "redux-middleware"
+  ],
   "author": "Dom Lee",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dominictwlee/redux-api-actions/issues"
   },
-  "homepage": "https://github.com/dominictwlee/redux-api-actions#readme"
+  "homepage": "https://github.com/dominictwlee/redux-api-actions#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.3.1",
+    "eslint": "^5.13.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "prettier": "^1.16.4",
+    "rollup": "^1.1.2",
+    "rollup-plugin-babel": "^4.3.2"
+  }
 }
