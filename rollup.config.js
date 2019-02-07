@@ -1,4 +1,6 @@
 import pkg from './package.json';
+import babel from 'rollup-plugin-babel';
+import minify from 'rollup-plugin-babel-minify';
 
 export default [
   // CommonJS (for Node) and ES module (for bundlers) build.
@@ -9,6 +11,12 @@ export default [
   // `file` and `format` for each target)
   {
     input: 'src/index.js',
+    plugins: [
+      babel({
+        exclude: 'node_modules/**',
+      }),
+      minify(),
+    ],
     output: [{ file: pkg.main, format: 'cjs' }, { file: pkg.module, format: 'es' }],
   },
 ];
