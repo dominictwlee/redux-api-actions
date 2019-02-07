@@ -1,5 +1,5 @@
 {
-  "name": "redux-api-actions",
+  "name": "@domtwlee/redux-api-actions",
   "version": "1.0.0",
   "description": "Redux middleware for dispatching api actions",
   "main": "dist/index.cjs.js",
