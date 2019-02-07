@@ -1,3 +1,5 @@
+import { normalize } from 'normalizr';
+
 export const apiActions = ({ dispatch, getState }) => next => action => {
   const { type, meta, payload } = action;
 
@@ -21,7 +23,14 @@ export const apiActions = ({ dispatch, getState }) => next => action => {
 
   return meta
     .apiCall()
-    .then(res => dispatch({ type: successType, payload: res }))
+    .then(res => {
+      if (meta.schema) {
+        const normalizedData = normalize(res, meta.schema);
+        dispatch({ type: successType, payload: normalizedData });
+      } else {
+        dispatch({ type: successType, payload: res });
+      }
+    })
     .catch(err => dispatch({ type: failureType, payload: err, error: true }));
 };
 

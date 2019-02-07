@@ -1,6 +1,7 @@
 import pkg from './package.json';
 import babel from 'rollup-plugin-babel';
 import minify from 'rollup-plugin-babel-minify';
+import resolve from 'rollup-plugin-node-resolve';
 
 export default [
   // CommonJS (for Node) and ES module (for bundlers) build.
@@ -12,6 +13,7 @@ export default [
   {
     input: 'src/index.js',
     plugins: [
+      resolve(),
       babel({
         exclude: 'node_modules/**',
       }),
