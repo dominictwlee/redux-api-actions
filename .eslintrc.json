@@ -1,3 +1,6 @@
 {
-    "extends": ["standard", "prettier", "prettier/standard"]
+  "extends": ["standard", "prettier", "prettier/standard"],
+  "env": {
+    "jest": true
+  }
 }
