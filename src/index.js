@@ -12,6 +12,11 @@ export const apiActions = ({ dispatch, getState }) => next => action => {
   }
 
   const actionSuffix = /REQUEST$/;
+
+  if (actionSuffix.exec(type) === null) {
+    throw new Error("Expected action type to have 'REQUEST' suffix");
+  }
+
   const successType = type.replace(actionSuffix, 'SUCCESS');
   const failureType = type.replace(actionSuffix, 'FAILURE');
 
