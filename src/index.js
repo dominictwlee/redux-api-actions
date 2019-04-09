@@ -35,8 +35,18 @@ export const apiActions = ({ dispatch, getState }) => next => action => {
       } else {
         dispatch({ type: successType, payload: res });
       }
+
+      if (meta.onSuccess && typeof meta.onSuccess === 'function') {
+        meta.onSuccess(res);
+      }
     })
-    .catch(err => dispatch({ type: failureType, payload: err, error: true }));
+    .catch(err => {
+      dispatch({ type: failureType, payload: err, error: true });
+
+      if (meta.onFailure && typeof meta.onFailure === 'function') {
+        meta.onFailure(err);
+      }
+    });
 };
 
 export function createAsyncActionTypes(reducerKey, type) {
