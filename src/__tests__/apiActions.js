@@ -20,7 +20,7 @@ describe('Actions passing through middleware', () => {
     expect(next).toHaveBeenCalledWith(action);
   });
 
-  test('Pass through action objects without meta.apiCall property', () => {
+  xtest('Pass through action objects without meta.apiCall property', () => {
     const { next, invoke } = create();
     const action = { type: 'TEST_MIDDLEWARE_REQUEST', meta: { other: 'not Api' } };
     invoke(action);
@@ -28,7 +28,7 @@ describe('Actions passing through middleware', () => {
   });
 });
 
-test('Throw error if meta.apiCall is not a function', () => {
+xtest('Throw error if meta.apiCall is not a function', () => {
   const { invoke } = create();
   const action = { type: 'TEST_MIDDLEWARE_REQUEST', meta: { apiCall: 'Not a function' } };
   try {
@@ -38,7 +38,7 @@ test('Throw error if meta.apiCall is not a function', () => {
   }
 });
 
-test('Throw error if action type is not the right format', () => {
+xtest('Throw error if action type is not the right format', () => {
   const { invoke } = create();
   const action = { type: 'REQUEST_TEST_MIDDLEWARE', meta: { apiCall: jest.fn() } };
   try {

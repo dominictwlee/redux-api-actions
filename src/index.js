@@ -1,6 +1,12 @@
 import { normalize } from 'normalizr';
 
-export const apiActions = ({ dispatch, getState }) => next => action => {
+const lifecycle = {
+  REQUEST: 'request',
+  SUCCESS: 'success',
+  FAILURE: 'failure',
+};
+
+export const apiActions = ({ dispatch }) => next => action => {
   const { type, meta, payload } = action;
 
   if (!meta || !meta.apiCall) {
@@ -11,29 +17,16 @@ export const apiActions = ({ dispatch, getState }) => next => action => {
     throw new Error('Expected meta.apiCall to be a function');
   }
 
-  const actionSuffix = /REQUEST$/;
-
-  if (actionSuffix.exec(type) === null) {
-    throw new Error("Expected action type to have 'REQUEST' suffix");
-  }
-
-  const successType = type.replace(actionSuffix, 'SUCCESS');
-  const failureType = type.replace(actionSuffix, 'FAILURE');
-
-  if (payload) {
-    dispatch({ type, payload });
-  } else {
-    dispatch({ type });
-  }
+  dispatch({ type, payload, meta: { lifecycle: lifecycle.REQUEST } });
 
   return meta
     .apiCall()
     .then(res => {
       if (meta.schema) {
         const normalizedData = normalize(res, meta.schema);
-        dispatch({ type: successType, payload: normalizedData });
+        dispatch({ type, payload: normalizedData, meta: { lifecycle: lifecycle.SUCCESS } });
       } else {
-        dispatch({ type: successType, payload: res });
+        dispatch({ type, payload: res, meta: { lifecycle: lifecycle.SUCCESS } });
       }
 
       if (meta.onSuccess && typeof meta.onSuccess === 'function') {
@@ -41,7 +34,7 @@ export const apiActions = ({ dispatch, getState }) => next => action => {
       }
     })
     .catch(err => {
-      dispatch({ type: failureType, payload: err, error: true });
+      dispatch({ type, payload: err, error: true, meta: { lifecycle: lifecycle.FAILURE } });
 
       if (meta.onFailure && typeof meta.onFailure === 'function') {
         meta.onFailure(err);
