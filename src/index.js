@@ -41,7 +41,7 @@ export const apiActions = ({ dispatch, getState }) => next => action => {
       }
     })
     .catch(err => {
-      dispatch({ type: failureType, payload: err, error: true });
+      dispatch({ type: failureType, payload: Object.assign(err, meta.errorPayload), error: true });
 
       if (meta.onFailure && typeof meta.onFailure === 'function') {
         meta.onFailure(err);
