@@ -1,24 +1,24 @@
 import pkg from './package.json';
 import babel from 'rollup-plugin-babel';
+import analyze from 'rollup-plugin-analyzer';
+import gzipPlugin from 'rollup-plugin-gzip';
 import minify from 'rollup-plugin-babel-minify';
-import resolve from 'rollup-plugin-node-resolve';
 
 export default [
-  // CommonJS (for Node) and ES module (for bundlers) build.
-  // (We could have three entries in the configuration array
-  // instead of two, but it's quicker to generate multiple
-  // builds from a single configuration where possible, using
-  // an array for the `output` option, where we can specify
-  // `file` and `format` for each target)
   {
     input: 'src/index.js',
     plugins: [
-      resolve(),
+      analyze(),
       babel({
         exclude: 'node_modules/**',
       }),
       minify(),
+      gzipPlugin(),
     ],
-    output: [{ file: pkg.main, format: 'cjs' }, { file: pkg.module, format: 'es' }],
+    external: ['normalizr'],
+    output: [
+      { file: pkg.main, format: 'cjs', sourcemap: true },
+      { file: pkg.module, format: 'es', sourcemap: true },
+    ],
   },
 ];
