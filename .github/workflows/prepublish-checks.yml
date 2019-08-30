@@ -1,0 +1,17 @@
+name: Prepublish Checks
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test-build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: npm ci
+      - run: npm test
