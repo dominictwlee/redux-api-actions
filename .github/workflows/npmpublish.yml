@@ -1,9 +1,6 @@
-name: Test and publish package
+name: Publish package
 
 on:
-  pull_request:
-    branches:
-      - master
   push:
     branches:
       - master
