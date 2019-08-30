@@ -10,8 +10,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "clean": "rimraf dist/",
-    "test": "jest",
-    "prepublish": "npm test && npm run clean && npm run build"
+    "test": "jest"
   },
   "husky": {
     "hooks": {
