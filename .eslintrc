@@ -1,0 +1,6 @@
+{
+  "extends": ["eslint-config-domtwlee"],
+  "env": {
+    "jest": true
+  }
+}
