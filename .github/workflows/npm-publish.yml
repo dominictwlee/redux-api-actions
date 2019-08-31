@@ -4,9 +4,10 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'package.json'
-      - 'src/*.js'
+      - feature/check-version
+    # paths:
+    #   - 'package.json'
+    #   - 'src/*.js'
 
 jobs:
   build:
