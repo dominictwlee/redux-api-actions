@@ -1,7 +1,8 @@
 import { handleSuffixedAction, handleLifecycledAction } from './middlewareHandlers';
 import { actionSuffix } from './actionRe';
+import stateChangeMap from './stateChangeMap';
 
-export const apiActions = ({ dispatch }) => next => action => {
+const apiActions = ({ dispatch }) => next => action => {
   const { type, meta } = action;
 
   if (!meta || !meta.apiCall) {
@@ -18,3 +19,5 @@ export const apiActions = ({ dispatch }) => next => action => {
 
   return handleLifecycledAction(action, dispatch);
 };
+
+export { stateChangeMap, apiActions };
