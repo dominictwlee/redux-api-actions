@@ -61,8 +61,5 @@
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-gzip": "^2.2.0",
     "rollup-plugin-node-resolve": "^5.0.4"
-  },
-  "dependencies": {
-    "normalizr": "^3.4.0"
   }
 }

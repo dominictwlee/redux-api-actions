@@ -1,5 +1,3 @@
-import { normalize } from 'normalizr';
-
 export const apiActions = ({ dispatch, getState }) => next => action => {
   const { type, meta, payload } = action;
 
@@ -29,12 +27,7 @@ export const apiActions = ({ dispatch, getState }) => next => action => {
   return meta
     .apiCall()
     .then(res => {
-      if (meta.schema) {
-        const normalizedData = normalize(res, meta.schema);
-        dispatch({ type: successType, payload: normalizedData });
-      } else {
-        dispatch({ type: successType, payload: res });
-      }
+      dispatch({ type: successType, payload: res });
 
       if (meta.onSuccess && typeof meta.onSuccess === 'function') {
         meta.onSuccess(res);
@@ -48,11 +41,3 @@ export const apiActions = ({ dispatch, getState }) => next => action => {
       }
     });
 };
-
-export function createAsyncActionTypes(reducerKey, type) {
-  const requestActionType = `${reducerKey}/${type}_REQUEST`;
-  const successActionType = `${reducerKey}/${type}_SUCCESS`;
-  const failureActionType = `${reducerKey}/${type}_FAILURE`;
-
-  return [requestActionType, successActionType, failureActionType];
-}
