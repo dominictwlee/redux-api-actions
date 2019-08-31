@@ -31,7 +31,7 @@ jobs:
       - name: Build with rollup
         run: npm run build
       - name: Publish latest version
-      - run: echo "$PUBLISHED_VERSION" && echo "$PKG_VERSION"
+        run: echo "$PUBLISHED_VERSION" && echo "$PKG_VERSION"
         env:
           PUBLISHED_VERSION: ${{ node -p "require('./package.json').version" }}
           PKG_VERSION: ${{ npm view @domtwlee/redux-api-actions version }}
