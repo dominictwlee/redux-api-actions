@@ -2,7 +2,7 @@ import { Store, Middleware } from 'redux';
 
 export const apiActions: Middleware<any, {}, any>;
 
-export type Lifecycles = 'start' | 'success' | 'failure';
+export type Lifecycles = 'request' | 'success' | 'failure';
 
 export type LifecycleFnMap<S, A> = {
   [K in Lifecycles]: (state: S, action: A) => S;
