@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - master
-      - feature/check-version
+    paths:
+      - 'package.json'
+      - 'src/*.js'
 
 jobs:
   build:
@@ -30,9 +32,9 @@ jobs:
         run: npm ci
       - name: Build with rollup
         run: npm run build
-      - name: Publish latest version
-        run: echo "$PUBLISHED_VERSION" && echo "$PKG_VERSION"
+      # - name: Publish latest version
+      #   run: npm publish
+      - name: Check steps context
         env:
-          # PUBLISHED_VERSION: ${{ node -p "require('./package.json').version" }}
-          PKG_VERSION: ${{ npm view @domtwlee/redux-api-actions version }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
