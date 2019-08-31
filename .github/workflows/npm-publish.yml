@@ -38,4 +38,4 @@ jobs:
       - name: Check steps context
         env:
           STEPS_CONTEXT: ${{ toJson(steps) }}
-        run: npm view @domtwlee/redux-api-actions version && npm echo "$STEPS_CONTEXT"
+        run: npm view @domtwlee/redux-api-actions version && echo "$STEPS_CONTEXT"
