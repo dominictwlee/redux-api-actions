@@ -1,9 +1,7 @@
 name: Publish package
 
 on:
-  push:
-    branches:
-      - master
+  release: published
 
 jobs:
   build:
@@ -12,7 +10,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
         with:
-          node-version: 10
+          node-version: '10.x'
       - run: npm ci
       - run: npm test
 
@@ -23,7 +21,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
         with:
-          node-version: 10
+          node-version: '10.x'
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run build
