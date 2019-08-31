@@ -1,6 +1,12 @@
-name: Publish package
+name: npm-publish
 
-on: release
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'package.json'
+      - 'src/*.js'
 
 jobs:
   build:
