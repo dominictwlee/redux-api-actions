@@ -33,6 +33,6 @@ jobs:
       - name: Publish latest version
         run: echo "$PUBLISHED_VERSION" && echo "$PKG_VERSION"
         env:
-          PUBLISHED_VERSION: ${{ node -p "require('./package.json').version" }}
+          # PUBLISHED_VERSION: ${{ node -p "require('./package.json').version" }}
           PKG_VERSION: ${{ npm view @domtwlee/redux-api-actions version }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
