@@ -1,6 +1,6 @@
 {
   "name": "@domtwlee/redux-api-actions",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Redux middleware for dispatching api actions",
   "source": "src/index.js",
   "main": "dist/index.js",
