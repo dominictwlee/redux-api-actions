@@ -2,6 +2,8 @@ import { Store, Middleware } from 'redux';
 
 export const apiActions: Middleware<any, {}, any>;
 
+export type ApiActionsMetaKey = 'redux-api-actions/lifecycle';
+
 export type Lifecycles = 'request' | 'success' | 'failure';
 
 export type LifecycleFnMap<S, A> = {
